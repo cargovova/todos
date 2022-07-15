@@ -1,5 +1,5 @@
 <template>
-  <v-card min-height="400px">
+  <v-card min-height="400px" class="ma-2">
     <delete-todo-dialog ref="deleteTodoDialog" />
     <todo-form ref="todoDialog" />
     <v-card-title>
