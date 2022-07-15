@@ -1,9 +1,13 @@
 <template>
   <v-app>
+    <todo-form ref="todoDialog" />
     <v-app-bar app clipped-left dense>
       <v-spacer></v-spacer>
       TODOS
       <v-spacer></v-spacer>
+      <v-btn plain fab small title="Add todo" @click="$refs.todoDialog.open()">
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
     </v-app-bar>
     <left-nav-menu />
     <v-main>
@@ -17,10 +21,11 @@
 
 <script>
 import LeftNavMenu from './components/LeftNavMenu.vue'
+import TodoForm from './components/TodoForm.vue'
 import { mapMutations, mapGetters } from 'vuex'
 
 export default {
-  components: { LeftNavMenu },
+  components: { LeftNavMenu, TodoForm },
   name: 'App',
   methods: {
     ...mapMutations(['SET_TODOS']),

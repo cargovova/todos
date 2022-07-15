@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { generateUid } from '../utils/generateUid'
 
 Vue.use(Vuex)
 
@@ -19,9 +18,8 @@ export default new Vuex.Store({
   },
   actions: {
     ADD_TODO({ commit, state }, todo) {
-      const uid = generateUid()
       const todos = [...state.todos]
-      todos.unshift({ ...todo, uid })
+      todos.unshift(todo)
       commit('SET_TODOS', todos)
       localStorage.setItem('todos', JSON.stringify({ todos }))
     },
@@ -29,6 +27,13 @@ export default new Vuex.Store({
       const todos = [...state.todos]
       const findedIndex = todos.findIndex(t => t.uid === +uid)
       todos.splice(findedIndex, 1)
+      commit('SET_TODOS', todos)
+      localStorage.setItem('todos', JSON.stringify({ todos }))
+    },
+    UPDATE_TODO({ commit, state }, todo) {
+      const todos = [...state.todos]
+      const findedIndex = todos.findIndex(t => t.uid === +todo.uid)
+      todos[findedIndex] = todo
       commit('SET_TODOS', todos)
       localStorage.setItem('todos', JSON.stringify({ todos }))
     },
