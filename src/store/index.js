@@ -18,8 +18,8 @@ export default new Vuex.Store({
     DELETE_SINGLE_TODO(state, index) {
       state.todos.splice(index, 1)
     },
-    UPDATE_SINGLE_TODO(state, index, todo) {
-      state.todos[index] = todo
+    UPDATE_SINGLE_TODO(state, payload) {
+      state.todos.splice(payload.index, 1, payload.todo)
     },
     SET_SNACKBAR(state, snackbar) {
       state.snackbar = snackbar
@@ -38,7 +38,7 @@ export default new Vuex.Store({
     },
     UPDATE_TODO({ commit, state }, todo) {
       const findedIndex = state.todos.findIndex(t => t.uid === +todo.uid)
-      commit('UPDATE_SINGLE_TODO', findedIndex, todo)
+      commit('UPDATE_SINGLE_TODO', { index: findedIndex, todo })
       localStorage.setItem('todos', JSON.stringify(state.todos))
     },
   },
