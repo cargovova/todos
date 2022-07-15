@@ -2,8 +2,7 @@
   <v-app>
     <todo-form ref="todoDialog" />
     <v-app-bar app clipped-left dense>
-      <v-spacer></v-spacer>
-      TODOS
+      <span style="cursor: pointer" @click="$router.push('/').catch(() => {})">TODOS</span>
       <v-spacer></v-spacer>
       <v-btn plain fab small title="Add todo" @click="$refs.todoDialog.open()">
         <v-icon>mdi-plus</v-icon>
@@ -33,7 +32,7 @@ export default {
   created() {
     const storredTodos = JSON.parse(localStorage.getItem('todos'))
     if (storredTodos) {
-      this.SET_TODOS(storredTodos.todos)
+      this.SET_TODOS(storredTodos)
     }
   },
   computed: {

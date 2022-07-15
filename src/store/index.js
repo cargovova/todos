@@ -20,22 +20,23 @@ export default new Vuex.Store({
     ADD_TODO({ commit, state }, todo) {
       const todos = [...state.todos]
       todos.unshift(todo)
+      console.log(todos)
       commit('SET_TODOS', todos)
-      localStorage.setItem('todos', JSON.stringify({ todos }))
+      localStorage.setItem('todos', JSON.stringify(todos))
     },
     DELETE_TODO({ commit, state }, uid) {
       const todos = [...state.todos]
       const findedIndex = todos.findIndex(t => t.uid === +uid)
       todos.splice(findedIndex, 1)
       commit('SET_TODOS', todos)
-      localStorage.setItem('todos', JSON.stringify({ todos }))
+      localStorage.setItem('todos', JSON.stringify(todos))
     },
     UPDATE_TODO({ commit, state }, todo) {
       const todos = [...state.todos]
       const findedIndex = todos.findIndex(t => t.uid === +todo.uid)
       todos[findedIndex] = todo
       commit('SET_TODOS', todos)
-      localStorage.setItem('todos', JSON.stringify({ todos }))
+      localStorage.setItem('todos', JSON.stringify(todos))
     },
   },
   getters: {

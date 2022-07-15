@@ -8,18 +8,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('../views/Home.vue'),
-    children: [
-      {
-        path: '/:uid',
-        name: 'Todo',
-        component: () => import('../views/Todo.vue'),
-      },
-    ],
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue'),
+    path: '/:uid',
+    name: 'Todo',
+    component: () => import('../views/Todo.vue'),
   },
 ]
 

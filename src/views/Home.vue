@@ -1,7 +1,5 @@
 <template>
-  <div class="pa-6">
-    <router-view />
-  </div>
+  <div class="pa-6">HOME</div>
 </template>
 
 <script>

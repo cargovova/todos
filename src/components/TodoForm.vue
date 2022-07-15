@@ -2,12 +2,12 @@
   <v-dialog @click:outside="close" width="600" v-model="showDialog">
     <v-card>
       <v-card-title>{{ titleText }} todo </v-card-title>
-      <v-form class="elevation-8 pa-6" v-model="valid">
+      <v-form class="elevation-8 pa-6" v-model="valid" ref="todoDialog">
         <v-text-field
           clearable
           outlined
           v-model="todo.name"
-          :counter="10"
+          :counter="15"
           :rules="rules.nameRules"
           label="Name"
           required
@@ -39,11 +39,11 @@ export default {
       rules: {
         nameRules: [
           v => !!v || 'Name is required',
-          v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+          v => (v && v.length <= 15) || 'Name must be less than 15 characters',
         ],
         descrRules: [
           v => !!v || 'Description is required',
-          v => (v && v.length <= 10) || 'Description must be less than 255 characters',
+          v => (v && v.length <= 255) || 'Description must be less than 255 characters',
         ],
       },
       valid: false,
@@ -60,14 +60,13 @@ export default {
           const uid = generateUid()
           this.ADD_TODO({ ...this.todo, uid })
           this.SET_SNACKBAR({ show: true, text: 'SUCCESS', color: 'green darken-4' })
-          console.log(this.todos)
           this.$router.push({ name: 'Todo', params: { uid } }).catch(() => {})
         } catch (error) {
           this.SET_SNACKBAR({ show: true, text: 'ERROR', color: 'red accent-4' })
         }
       } else {
         try {
-          this.UPDATE_TODO(this.todo)
+          this.UPDATE_TODO({ ...this.todo })
           this.SET_SNACKBAR({ show: true, text: 'SUCCESS', color: 'green darken-4' })
           this.$router.push({ name: 'Todo', params: { uid: this.todo.uid } }).catch(() => {})
         } catch (error) {
@@ -84,7 +83,7 @@ export default {
       this.showDialog = true
     },
     close() {
-      this.todoItem = { name: '', description: '' }
+      this.$refs.todoDialog.reset()
       this.showDialog = false
     },
   },
