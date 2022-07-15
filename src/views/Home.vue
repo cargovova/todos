@@ -1,6 +1,7 @@
 <template>
   <div class="pa-6">
     <add-todo-form />
+    <router-view />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app clipped-left>
+    <v-app-bar app clipped-left dense>
       <v-spacer></v-spacer>
       TODOS
       <v-spacer></v-spacer>
