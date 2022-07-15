@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="my-6" min-height="400px">
     <delete-todo-dialog ref="deleteTodoDialog" />
     <v-card-title>
       <span v-html="todo.name"></span>

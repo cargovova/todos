@@ -1,6 +1,6 @@
 <template>
-  <v-form class="elevation-20" v-model="valid">
-    <v-row>
+  <v-form class="elevation-8" v-model="valid">
+    <v-row class="mx-1">
       <v-col cols="3">
         <v-text-field
           clearable
