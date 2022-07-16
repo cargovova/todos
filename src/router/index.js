@@ -22,18 +22,18 @@ const router = new VueRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.name === 'Todo') {
-    const todos = JSON.parse(localStorage.getItem('todos'))
-    const findedTodo = todos?.find(t => t.uid === +to.params.uid)
-    if (!findedTodo) {
-      next({ name: 'Home' })
-    } else {
-      next()
-    }
-  } else {
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.name === 'Todo') {
+//     const todos = JSON.parse(localStorage.getItem('todos'))
+//     const findedTodo = todos?.find(t => t.uid === +to.params.uid)
+//     if (!findedTodo) {
+//       next({ name: 'Home' })
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 export default router
