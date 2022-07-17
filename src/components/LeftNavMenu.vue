@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app clipped>
+  <v-navigation-drawer app clipped v-model="localDrawer" disable-resize-watcher>
     <v-list>
       <v-list-item exact link :to="'/' + todo.uid" v-for="(todo, i) in todos" :key="i">
         <v-list-item-content>
@@ -15,6 +15,24 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'LeftNavMenu',
+  props: {
+    drawer: Boolean,
+  },
+  data() {
+    return {
+      localDrawer: this.drawer,
+    }
+  },
+  watch: {
+    drawer: function () {
+      this.localDrawer = this.drawer
+    },
+    localDrawer: function () {
+      if (!this.localDrawer) {
+        this.$emit('closeDrawer', this.localDrawer)
+      }
+    },
+  },
   computed: {
     ...mapGetters(['todos']),
   },
