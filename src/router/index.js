@@ -10,7 +10,12 @@ const routes = [
     component: () => import('../views/Home.vue'),
   },
   {
-    path: '/:uid',
+    path: '/merch',
+    name: 'Merch',
+    component: () => import('../views/Merch.vue'),
+  },
+  {
+    path: '/todos/:uid',
     name: 'Todo',
     component: () => import('../views/Todo.vue'),
   },

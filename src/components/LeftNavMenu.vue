@@ -1,7 +1,12 @@
 <template>
   <v-navigation-drawer app clipped v-model="localDrawer" disable-resize-watcher>
     <v-list>
-      <v-list-item exact link :to="'/' + todo.uid" v-for="(todo, i) in todos" :key="i">
+      <v-list-item exact link to="/merch">
+        <v-list-item-content>
+          <v-list-item-title class="text-left green--text">MERCH</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item exact link :to="'/todos/' + todo.uid" v-for="(todo, i) in todos" :key="i">
         <v-list-item-content>
           <v-list-item-title class="text-left">{{ todo.name }}</v-list-item-title>
         </v-list-item-content>
