@@ -45,8 +45,10 @@ export default {
           const eb = (y2 * x1 * x1 - y1 * x2 * x2) / (x2 * x1 * x1 - x1 * x2 * x2)
           const ea = (y1 - eb * x1) / (x1 * x1)
 
+          const beginXOffset = 80 - imgObj.width / coefficient / 2
+
           let currentYOffset
-          for (let x = 100; x < 300; x++) {
+          for (let x = 100 + beginXOffset; x < 300 + beginXOffset; x++) {
             currentYOffset = ea * x * x + eb * x + 60
             xOffset += coefficient
             this.context.drawImage(
