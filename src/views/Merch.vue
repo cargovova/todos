@@ -34,22 +34,32 @@ export default {
         let imgObj = new Image()
         imgObj.src = firstSetting ?? URL.createObjectURL(this.artwork)
         imgObj.onload = () => {
-          const cuttingWidth = imgObj.width / 150
+          const coefficient = imgObj.width > imgObj.height ? imgObj.width / 160 : imgObj.height / 160
           let xOffset = 0
 
-          var x1 = 340 / 2
-          var x2 = 340
-          var y1 = 60 // curve depth
-          var y2 = 0
+          const x1 = 340 / 2
+          const x2 = 340
+          const y1 = 60 // curve depth
+          const y2 = 0
 
-          var eb = (y2 * x1 * x1 - y1 * x2 * x2) / (x2 * x1 * x1 - x1 * x2 * x2)
-          var ea = (y1 - eb * x1) / (x1 * x1)
+          const eb = (y2 * x1 * x1 - y1 * x2 * x2) / (x2 * x1 * x1 - x1 * x2 * x2)
+          const ea = (y1 - eb * x1) / (x1 * x1)
 
-          var currentYOffset
+          let currentYOffset
           for (let x = 100; x < 300; x++) {
             currentYOffset = ea * x * x + eb * x + 60
-            xOffset += cuttingWidth
-            this.context.drawImage(imgObj, xOffset, 0, cuttingWidth, imgObj.height, x, currentYOffset, 1, 200)
+            xOffset += coefficient
+            this.context.drawImage(
+              imgObj,
+              xOffset,
+              0,
+              coefficient,
+              imgObj.height,
+              x,
+              currentYOffset,
+              1,
+              imgObj.height / coefficient
+            )
           }
           resolve()
         }
